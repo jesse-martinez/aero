@@ -6,3 +6,7 @@
 # Assumptions
 
 - 
+
+# Things to add
+
+- Date picker to jump to a specific date to schedule flights

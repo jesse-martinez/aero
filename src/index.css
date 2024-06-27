@@ -2,25 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color: #fff;
-  background-color: #1b1b1f;
+@font-face {
+  font-family: 'NT Rappel';
+  src: url('/fonts/NT-Rappel-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: "NT Bau Mono";
+  src: url('/fonts/NT-Bau-Mono.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+:root {
+  font-family: "NT Bau Mono", monospace;
+  color: #fff;
+  background-color: #161616;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+h1, h2 {
+  font-family: 'NT Rappel', 'sans-serif';
 }
 
-h1 {
-  font-size: 1.5em;
+a {
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: inherit;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffffff30;
+  border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff50;
 }
