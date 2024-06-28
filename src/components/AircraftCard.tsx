@@ -1,20 +1,40 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react';
+import { clsx } from 'clsx'
 
 type AircraftCardProps = {
   name: string,
   model: string,
-  capacity: number
+  capacity: number,
+  aircraftSelected: string,
+  setAircraftSelected: (aircraft: string) => void;
 }
 
-export default function AircraftCard({name, model, capacity}: AircraftCardProps) {
+export default function AircraftCard({name, model, capacity, aircraftSelected, setAircraftSelected}: AircraftCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+
+  const isSelected = () => {
+    return aircraftSelected === name;
+  }
+
+  const handleClick = () => {
+    if(isSelected()) {
+      setAircraftSelected('');
+    }
+    else {
+      setAircraftSelected(name);
+    }
+  }
 
   return(
     <button 
-      className="aircraft-card border border-white/20 px-4 py-3 bg-white/5 opacity-50 hover:opacity-100 rounded w-full transition-all"
+      className={clsx(
+        "aircraft-card border border-white/20 px-4 py-3 bg-white/5 opacity-50 hover:opacity-100 rounded mb-3 w-full transition-all",
+        { "opacity-100 bg-white/10": isSelected() }
+      )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
     >
       <div className="flex justify-between overflow-hidden mb-4">
         <p className="text-lg uppercase">{name}</p>
@@ -24,7 +44,7 @@ export default function AircraftCard({name, model, capacity}: AircraftCardProps)
           transition={{ duration: 0.25, ease: [0.075, 0.82, 0.165, 1] }}
           className="toggle-text text-xxs uppercase origin-center"
         >
-          Select flight +
+          {isSelected() ? "Delete rotation -" : "Select aircraft +"}
         </motion.p>
       </div>
       <div className="flex justify-between">
