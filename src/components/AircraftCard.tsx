@@ -19,7 +19,7 @@ export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSe
 
   const handleClick = () => {
     resetRotation();
-    
+
     if (isSelected()) {
       setAircraftSelected('');
     } else {
@@ -30,7 +30,7 @@ export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSe
   return (
     <button 
       className={clsx(
-        "aircraft-card border border-white/20 px-4 py-3 bg-white/5 opacity-50 hover:opacity-100 rounded mb-3 w-full transition-all",
+        "aircraft-card border border-white/20 px-4 py-3 bg-white/5 opacity-50 hover:opacity-100 rounded mb-3 last:mb-0 w-full transition-all",
         { "opacity-100 bg-white/10": isSelected() }
       )}
       onMouseEnter={() => setIsHovered(true)}

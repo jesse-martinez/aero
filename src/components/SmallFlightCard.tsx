@@ -14,7 +14,7 @@ export default function SmallFlightCard({flight, aircraftSelected}: SmallFlightC
   return(
     <button 
       className={clsx(
-        "small-flight-card px-4 py-3 border border-white/20 bg-white/5 hover:opacity-100 opacity-50 w-full rounded mb-3 transition-all", 
+        "small-flight-card px-4 py-3 border border-white/20 bg-white/5 hover:opacity-100 opacity-50 w-full rounded mb-3 last:mb-0 transition-all", 
         {"pointer-events-none" : !aircraftSelected}
       )}
       onMouseEnter={() => setIsHovered(true)}
