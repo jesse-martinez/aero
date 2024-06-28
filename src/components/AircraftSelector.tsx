@@ -4,10 +4,11 @@ import { Aircraft } from "../types";
 type AircraftSelectorProps = {
   aircrafts: Aircraft[],
   aircraftSelected: string,
-  setAircraftSelected: (aircraft:string) => void
+  setAircraftSelected: (aircraft:string) => void,
+  resetRotation: () => void
 }
 
-export default function AircraftSelector({aircrafts, aircraftSelected, setAircraftSelected}:AircraftSelectorProps) {
+export default function AircraftSelector({aircrafts, aircraftSelected, setAircraftSelected, resetRotation}:AircraftSelectorProps) {
 
   return(
     <div className="flex flex-col w-3/12 pr-1">
@@ -19,6 +20,7 @@ export default function AircraftSelector({aircrafts, aircraftSelected, setAircra
             aircraft={aircraft}
             aircraftSelected={aircraftSelected}
             setAircraftSelected={setAircraftSelected}
+            resetRotation={resetRotation}
           />
         ))}
       </div>

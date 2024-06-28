@@ -32,6 +32,10 @@ function App() {
     setFlights(data);
   };
 
+  const resetRotation = () => {
+    setRotation([]);
+  }
+
   return (
     <>
       <Nav/>
@@ -40,6 +44,7 @@ function App() {
           aircrafts={aircrafts} 
           aircraftSelected={aircraftSelected}
           setAircraftSelected={setAircraftSelected}
+          resetRotation={resetRotation}
         />
         <Rotation
           aircraftSelected={aircraftSelected}

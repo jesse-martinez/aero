@@ -4,12 +4,13 @@ import clsx from 'clsx';
 import { Aircraft } from '../types';
 
 type AircraftCardProps = {
-  aircraft: Aircraft
+  aircraft: Aircraft,
   aircraftSelected: string,
-  setAircraftSelected: (aircraft: string) => void
+  setAircraftSelected: (aircraft: string) => void,
+  resetRotation: () => void
 };
 
-export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSelected }: AircraftCardProps) {
+export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSelected, resetRotation }: AircraftCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const isSelected = () => {
@@ -17,6 +18,8 @@ export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSe
   };
 
   const handleClick = () => {
+    resetRotation();
+    
     if (isSelected()) {
       setAircraftSelected('');
     } else {
