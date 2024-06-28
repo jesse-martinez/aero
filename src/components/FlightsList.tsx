@@ -1,17 +1,8 @@
 import SmallFlightCard from "./SmallFlightCard"
+import { Flight } from '../types'
 
 type FlightsProps = {
   flights: Flight[]
-}
-
-type Flight = {
-  ident: string,
-  origin: string,
-  destination: string,
-  readable_departure: string,
-  readable_arrival: string,
-  departuretime: number,
-  arrivaltime: number
 }
 
 export default function Flights({flights}:FlightsProps) {
@@ -23,13 +14,7 @@ export default function Flights({flights}:FlightsProps) {
         {flights.map((flight, i) => (
           <SmallFlightCard 
             key={i}
-            flightName={flight.ident} 
-            origin={flight.origin} 
-            destination={flight.destination}
-            readableDepartingTime={flight.readable_departure}
-            readableArrivalTime={flight.readable_arrival}
-            departingTime={flight.departuretime}
-            arrivalTime={flight.arrivaltime}
+            flight={flight}
           />
         ))}
       </div>

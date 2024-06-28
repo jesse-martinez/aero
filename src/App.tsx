@@ -2,17 +2,18 @@ import Nav from "./components/Nav"
 import AircraftSelector from "./components/AircraftSelector"
 import Rotation from "./components/Rotation"
 import FlightsList from "./components/FlightsList"
+import { Aircraft, Flight } from './types'
 
 import { useState, useEffect } from 'react'
 
 function App() {
-  const [aircrafts, setAircrafts] = useState([]);
-  const [flights, setFlights] = useState([]);
+  const [aircrafts, setAircrafts] = useState<Aircraft[]>([]);
+  const [flights, setFlights] = useState<Flight[]>([]);
 
   const [aircraftSelected, setAircraftSelected] = useState('');
 
-  const [currentRotation, setCurrentRotation] = useState([]);
-  const [nextFlights, setNextFlights] = useState([]);
+  const [rotation, setRotation] = useState<Flight[]>([]);
+  const [nextFlights, setNextFlights] = useState<Flight[]>([]);
 
   useEffect(() => {
     fetchAircrafts();
@@ -42,6 +43,7 @@ function App() {
         />
         <Rotation
           aircraftSelected={aircraftSelected}
+          rotation={rotation}
         />
         <FlightsList flights={flights}/>
       </div>

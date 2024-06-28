@@ -1,16 +1,11 @@
 import AircraftCard from "./AircraftCard"
+import { Aircraft } from "../types";
 
 type AircraftSelectorProps = {
   aircrafts: Aircraft[],
   aircraftSelected: string,
   setAircraftSelected: (aircraft:string) => void
 }
-
-type Aircraft = {
-  ident: string,
-  type: string,
-  economySeats: number
-};
 
 export default function AircraftSelector({aircrafts, aircraftSelected, setAircraftSelected}:AircraftSelectorProps) {
 
@@ -21,9 +16,7 @@ export default function AircraftSelector({aircrafts, aircraftSelected, setAircra
         {aircrafts.map((aircraft, i) => (
           <AircraftCard 
             key={i}
-            name={aircraft.ident}
-            model={aircraft.type}
-            capacity={aircraft.economySeats}
+            aircraft={aircraft}
             aircraftSelected={aircraftSelected}
             setAircraftSelected={setAircraftSelected}
           />

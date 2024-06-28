@@ -1,32 +1,30 @@
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { clsx } from 'clsx'
+import clsx from 'clsx';
+import { Aircraft } from '../types';
 
 type AircraftCardProps = {
-  name: string,
-  model: string,
-  capacity: number,
+  aircraft: Aircraft
   aircraftSelected: string,
-  setAircraftSelected: (aircraft: string) => void;
-}
+  setAircraftSelected: (aircraft: string) => void
+};
 
-export default function AircraftCard({name, model, capacity, aircraftSelected, setAircraftSelected}: AircraftCardProps) {
+export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSelected }: AircraftCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const isSelected = () => {
-    return aircraftSelected === name;
-  }
+    return aircraftSelected === aircraft.ident;
+  };
 
   const handleClick = () => {
-    if(isSelected()) {
+    if (isSelected()) {
       setAircraftSelected('');
+    } else {
+      setAircraftSelected(aircraft.ident);
     }
-    else {
-      setAircraftSelected(name);
-    }
-  }
+  };
 
-  return(
+  return (
     <button 
       className={clsx(
         "aircraft-card border border-white/20 px-4 py-3 bg-white/5 opacity-50 hover:opacity-100 rounded mb-3 w-full transition-all",
@@ -37,7 +35,7 @@ export default function AircraftCard({name, model, capacity, aircraftSelected, s
       onClick={handleClick}
     >
       <div className="flex justify-between overflow-hidden mb-4">
-        <p className="text-lg uppercase">{name}</p>
+        <p className="text-lg uppercase">{aircraft.ident}</p>
         <motion.p
           initial={{ x: 10, opacity: 0 }}
           animate={isHovered ? { x: 0, opacity: 1 } : { x: 10, opacity: 0 }}
@@ -49,11 +47,11 @@ export default function AircraftCard({name, model, capacity, aircraftSelected, s
       </div>
       <div className="flex justify-between">
         <div className="text-left">
-          <p className="text-xs uppercase">Model {model}</p>
-          <p className="text-xs uppercase">Capacity {capacity}</p>
+          <p className="text-xs uppercase">Model {aircraft.type}</p>
+          <p className="text-xs uppercase">Capacity {aircraft.economySeats}</p>
         </div>
         <p className="text-lg">54%</p>
       </div>
     </button>
-  )
+  );
 }

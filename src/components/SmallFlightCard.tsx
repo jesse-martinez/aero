@@ -1,17 +1,12 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { Flight } from '../types'
 
 type SmallFlightCardProps = {
-  flightName: string,
-  origin: string,
-  destination: string,
-  readableDepartingTime: string,
-  readableArrivalTime: string,
-  departingTime: number,
-  arrivalTime: number
+  flight: Flight
 }
 
-export default function SmallFlightCard({flightName, origin, destination, readableDepartingTime, readableArrivalTime, departingTime, arrivalTime}: SmallFlightCardProps) {
+export default function SmallFlightCard({flight}: SmallFlightCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   
   return(
@@ -21,7 +16,7 @@ export default function SmallFlightCard({flightName, origin, destination, readab
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex justify-between overflow-hidden">
-        <p className="text mb-3">{flightName}</p>
+        <p className="text mb-3">{flight.ident}</p>
         <motion.p
           initial={{ x: 10, opacity: 0 }}
           animate={isHovered ? { x: 0, opacity: 1 } : { x: 10, opacity: 0 }}
@@ -33,12 +28,12 @@ export default function SmallFlightCard({flightName, origin, destination, readab
       </div>
       <div className="flex justify-between">
         <div>
-          <p className="text-lg">{origin}</p>
-          <p>{readableDepartingTime}</p>
+          <p className="text-lg">{flight.origin}</p>
+          <p>{flight.readable_departure}</p>
         </div>
         <div>
-          <p className="text-lg">{destination}</p>
-          <p>{readableArrivalTime}</p>
+          <p className="text-lg">{flight.destination}</p>
+          <p>{flight.readable_arrival}</p>
         </div>
       </div>
     </button>
