@@ -2,10 +2,11 @@ import SmallFlightCard from "./SmallFlightCard"
 import { Flight } from '../types'
 
 type FlightsProps = {
-  flights: Flight[]
+  flights: Flight[],
+  aircraftSelected: string
 }
 
-export default function Flights({flights}:FlightsProps) {
+export default function Flights({flights, aircraftSelected}:FlightsProps) {
 
   return(
     <div className="flex flex-col w-3/12 pl-1">
@@ -15,6 +16,7 @@ export default function Flights({flights}:FlightsProps) {
           <SmallFlightCard 
             key={i}
             flight={flight}
+            aircraftSelected={aircraftSelected}
           />
         ))}
       </div>

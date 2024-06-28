@@ -11,3 +11,5 @@
 
 - Date picker to jump to a specific date to schedule flights
 - React Suspense to show skeletons of aircrafts and flights while fetching
+- Responsive
+- Accessibility

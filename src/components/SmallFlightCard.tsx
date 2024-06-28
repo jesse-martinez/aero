@@ -1,17 +1,22 @@
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { Flight } from '../types'
+import { clsx } from 'clsx'
 
 type SmallFlightCardProps = {
-  flight: Flight
+  flight: Flight,
+  aircraftSelected: string
 }
 
-export default function SmallFlightCard({flight}: SmallFlightCardProps) {
+export default function SmallFlightCard({flight, aircraftSelected}: SmallFlightCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   
   return(
     <button 
-      className="small-flight-card px-4 py-3 border border-white/20 bg-white/5 hover:opacity-100 opacity-50 w-full rounded mb-3 transition-all"
+      className={clsx(
+        "small-flight-card px-4 py-3 border border-white/20 bg-white/5 hover:opacity-100 opacity-50 w-full rounded mb-3 transition-all", 
+        {"pointer-events-none" : !aircraftSelected}
+      )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

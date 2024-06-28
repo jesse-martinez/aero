@@ -45,7 +45,10 @@ function App() {
           aircraftSelected={aircraftSelected}
           rotation={rotation}
         />
-        <FlightsList flights={flights}/>
+        <FlightsList 
+          flights={flights}
+          aircraftSelected={aircraftSelected}
+        />
       </div>
     </>
   )
