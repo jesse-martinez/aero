@@ -7,15 +7,15 @@ type BigFlightCardProps = {
 
 export default function BigFlightCard({flight, flightLeg}:BigFlightCardProps) {
   return(
-    <div className="big-flight-card block w-full px-5 py-4 border border-white/20 bg-white/5 rounded mb-3 last:mb-0">
+    <div className="big-flight-card block w-full px-4 py-3 border border-white/20 bg-white/5 rounded mb-3 last:mb-0">
       <p className="text-lg text-center mb-3">{flight.ident}</p>
       <div className="flex justify-between items-center mb-3">
-        <div>
+        <div className="text-center">
           <p className="text-lg">{flight.origin}</p>
           <p>{flight.readable_departure}</p>
         </div>
         <div className="h-1 bg-white w-full mx-8"></div>
-        <div>
+        <div className="text-center">
           <p className="text-lg">{flight.destination}</p>
           <p>{flight.readable_arrival}</p>
         </div>

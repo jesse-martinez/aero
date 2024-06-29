@@ -13,7 +13,7 @@ export default function AircraftSelector({aircrafts, aircraftSelected, setAircra
   return(
     <div className="flex flex-col w-3/12 pr-1">
       <h2 className="text-center mb-4 text-lg">Aircrafts</h2>
-      <div className="border border-white/20 rounded grow p-3 overflow-auto">
+      <div className="border border-white/20 rounded h-90 grow p-3 overflow-auto">
         {aircrafts.map((aircraft, i) => (
           <AircraftCard 
             key={i}

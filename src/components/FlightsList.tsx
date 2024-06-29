@@ -18,7 +18,7 @@ export default function Flights({nextFlights, aircraftSelected, rotation, setRot
       <h2 className="text-center mb-4 text-lg">
         {hasRotation() ? "Choose Next Flight" : "All Flights"}
       </h2>
-      <div className="border border-white/20 rounded grow p-3 overflow-auto">
+      <div className="border border-white/20 rounded h-90 grow p-3 overflow-auto">
         {nextFlights.length > 0 ? (
           nextFlights.map((flight, i) => (
             <SmallFlightCard

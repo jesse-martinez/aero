@@ -8,9 +8,11 @@ export default {
     extend: {
       height: {
         '1': '1px',
+        '90': '90%'
       },
       fontSize: {
-        'xxs': '0.65rem',
+        'micro': '0.5rem',
+        'xxs': '0.65rem'
       },
       container: {
         center: true,
