@@ -32,9 +32,9 @@ export default function Flights({nextFlights, aircraftSelected, rotation, setRot
           ))
         ) : (
           <div className="flex flex-col justify-center items-center h-full w-full">
-            <h2 className="text-center text-gray-500 mb-3">No possible flights.</h2>
+            <h2 className="text-center text-gray-500 mb-3">No remaining viable flights.</h2>
             <button 
-              className="block text-xxs uppercase border border-white/20 bg-white/5 hover:bg-white/10 px-4 py-3 rounded transition-all"
+              className="block text-xxs uppercase border border-white/20 bg-white/5 hover:bg-white/10 px-4 py-2 rounded transition-all"
               onClick={()=> resetRotation()}>Reset rotation</button>
           </div>
         )}
