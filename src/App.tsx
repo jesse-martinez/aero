@@ -13,6 +13,7 @@ function App() {
   const [rotation, setRotation] = useState<Flight[]>([]);
   const [nextFlights, setNextFlights] = useState<Flight[]>([]); 
   const [utilPercentage, setUtilPercentage] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const fetchAircrafts = async () => {
     try {
@@ -35,6 +36,8 @@ function App() {
       setNextFlights(data);
     } catch (error) {
       console.error("Error fetching flights:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -74,29 +77,34 @@ function App() {
 
   return (
     <>
-      <Nav/>
+      <Nav />
       <div className="container flex justify-between mx-auto py-10 grow overflow-hidden">
-        <AircraftSelector 
-          aircrafts={aircrafts} 
-          aircraftSelected={aircraftSelected}
-          setAircraftSelected={setAircraftSelected}
-          resetRotation={resetRotation}
-          utilPercentage={utilPercentage}
-        />
-        <Rotation
-          aircraftSelected={aircraftSelected}
-          rotation={rotation}
-        />
-        <FlightsList 
-          nextFlights={nextFlights}
-          aircraftSelected={aircraftSelected}
-          rotation={rotation}
-          setRotation={setRotation}
-          resetRotation={resetRotation}
-        />
+        {loading ? (
+          <div className="h-full w-full flex justify-center items-center">
+            <h2>Loading data...</h2>
+          </div>
+        ) : (
+          <>
+            <AircraftSelector
+              aircrafts={aircrafts}
+              aircraftSelected={aircraftSelected}
+              setAircraftSelected={setAircraftSelected}
+              resetRotation={resetRotation}
+              utilPercentage={utilPercentage}
+            />
+            <Rotation aircraftSelected={aircraftSelected} rotation={rotation} />
+            <FlightsList
+              nextFlights={nextFlights}
+              aircraftSelected={aircraftSelected}
+              rotation={rotation}
+              setRotation={setRotation}
+              resetRotation={resetRotation}
+            />
+          </>
+        )}
       </div>
     </>
-  )
+  );
 }
 
 export default App

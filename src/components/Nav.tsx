@@ -8,7 +8,7 @@ export default function Nav() {
         <img src="/logo.png" className="max-h-4 mr-2 mt-1"></img>
         <h1 className="text-lg justify-self-start">Aero</h1>
       </div>
-      <div className="relative flex items-center justify-self-center right-10">
+      <div className="relative flex items-center justify-self-center right-9">
         <button className="hover:bg-white/10 transition-all p-1 mr-3 aspect-square h-6 rounded-full"><ChevronLeftIcon/></button>
         <h2 className="whitespace-nowrap">10 July 2024</h2>
         <button className="hover:bg-white/10 transition-all p-1 ml-3 aspect-square h-6 rounded-full"><ChevronRightIcon/></button>
