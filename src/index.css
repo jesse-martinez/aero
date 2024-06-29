@@ -36,6 +36,10 @@ a {
   text-decoration: inherit;
 }
 
+.flex-col > .border { 
+  height: 90%;
+}
+
 /* Scrollbar styles */
 ::-webkit-scrollbar {
   width: 8px;
