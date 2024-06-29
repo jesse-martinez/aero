@@ -3,10 +3,12 @@ import { Flight } from "../types"
 
 type FlightsProps = {
   flights: Flight[],
-  aircraftSelected: string
+  aircraftSelected: string,
+  rotation: Flight[],
+  setRotation: (newRotation:Flight[]) => void
 }
 
-export default function Flights({flights, aircraftSelected}:FlightsProps) {
+export default function Flights({flights, aircraftSelected, rotation, setRotation}:FlightsProps) {
 
   return(
     <div className="flex flex-col w-3/12 pl-1">
@@ -17,6 +19,8 @@ export default function Flights({flights, aircraftSelected}:FlightsProps) {
             key={i}
             flight={flight}
             aircraftSelected={aircraftSelected}
+            rotation={rotation}
+            setRotation={setRotation}
           />
         ))}
       </div>

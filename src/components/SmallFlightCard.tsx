@@ -5,18 +5,27 @@ import { Flight } from "../types"
 
 type SmallFlightCardProps = {
   flight: Flight,
-  aircraftSelected: string
+  aircraftSelected: string,
+  rotation: Flight[],
+  setRotation: (newRotation:Flight[]) => void
 }
 
-export default function SmallFlightCard({flight, aircraftSelected}: SmallFlightCardProps) {
+export default function SmallFlightCard({flight, aircraftSelected, rotation, setRotation}: SmallFlightCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   
+  const addFlight = (flight:Flight) => {
+    const newRotation = [...rotation];
+    newRotation.push(flight);
+    setRotation(newRotation);
+  }
+
   return(
     <button 
       className={clsx(
         "small-flight-card px-4 py-3 border border-white/20 bg-white/5 hover:opacity-100 opacity-50 w-full rounded mb-3 last:mb-0 transition-all", 
         {"pointer-events-none" : !aircraftSelected}
       )}
+      onClick={() =>  addFlight(flight)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

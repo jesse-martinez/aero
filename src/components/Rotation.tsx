@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import BigFlightCard from "./BigFlightCard"
 import { Flight } from "../types"
 
 type RotationProps = {
@@ -33,7 +34,15 @@ export default function Rotation({aircraftSelected, rotation}:RotationProps) {
           <div className="flex items-center justify-center h-full"><h2>Select an initial flight</h2></div>
         )}
         {hasRotation() && (
-          <div className=""></div>
+          <div className="rotation">
+            {rotation.map((flight, i) => (
+              <BigFlightCard
+                key={i}
+                flight={flight}
+                flightLeg={i+1}
+              />
+            ))}
+          </div>
         )}
       </div>
     </div>

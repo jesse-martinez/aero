@@ -13,7 +13,7 @@ function App() {
   const [aircraftSelected, setAircraftSelected] = useState('');
 
   const [rotation, setRotation] = useState<Flight[]>([]);
-  const [nextFlights, setNextFlights] = useState<Flight[]>([]); 
+  // const [nextFlights, setNextFlights] = useState<Flight[]>([]); 
 
   useEffect(() => {
     fetchAircrafts();
@@ -53,6 +53,8 @@ function App() {
         <FlightsList 
           flights={flights}
           aircraftSelected={aircraftSelected}
+          rotation={rotation}
+          setRotation={setRotation}
         />
       </div>
     </>

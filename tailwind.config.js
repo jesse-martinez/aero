@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      height: {
+        '1': '1px',
+      },
       fontSize: {
         'xxs': '0.65rem',
       },
@@ -13,7 +16,7 @@ export default {
         center: true,
         padding: '.75rem',
         screens: {
-          DEFAULT: '1420px'
+          DEFAULT: '1320px'
         },
       },
     },

@@ -31,7 +31,7 @@ export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSe
     <button 
       className={clsx(
         "aircraft-card border border-white/20 px-4 py-3 bg-white/5 opacity-50 hover:opacity-100 rounded mb-3 last:mb-0 w-full transition-all",
-        { "opacity-100 bg-white/10": isSelected() }
+        { "!opacity-100 !bg-white/10": isSelected() }
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
