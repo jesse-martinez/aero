@@ -1,5 +1,5 @@
 import AircraftCard from "./AircraftCard"
-import { Aircraft } from "../types";
+import { Aircraft } from "../types"
 
 type AircraftSelectorProps = {
   aircrafts: Aircraft[],

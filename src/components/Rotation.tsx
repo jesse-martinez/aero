@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { Flight } from '../types'
+import { motion } from "framer-motion"
+import { Flight } from "../types"
 
 type RotationProps = {
   aircraftSelected: string,

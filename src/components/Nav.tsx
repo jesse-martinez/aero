@@ -1,5 +1,5 @@
-import { ChevronLeftIcon } from '@heroicons/react/24/solid'
-import { ChevronRightIcon } from '@heroicons/react/24/solid'
+import { ChevronLeftIcon } from "@heroicons/react/24/solid"
+import { ChevronRightIcon } from "@heroicons/react/24/solid"
 
 export default function Nav() {
   return(

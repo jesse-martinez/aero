@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import clsx from 'clsx';
-import { Aircraft } from '../types';
+import { useState } from "react"
+import { motion } from "framer-motion"
+import clsx from "clsx"
+import { Aircraft } from "../types"
 
 type AircraftCardProps = {
   aircraft: Aircraft,

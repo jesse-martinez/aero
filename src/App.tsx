@@ -1,10 +1,10 @@
+import { useState, useEffect } from "react"
 import Nav from "./components/Nav"
 import AircraftSelector from "./components/AircraftSelector"
 import Rotation from "./components/Rotation"
 import FlightsList from "./components/FlightsList"
-import { Aircraft, Flight } from './types'
+import { Aircraft, Flight } from "./types"
 
-import { useState, useEffect } from 'react'
 
 function App() {
   const [aircrafts, setAircrafts] = useState<Aircraft[]>([]);
@@ -13,7 +13,7 @@ function App() {
   const [aircraftSelected, setAircraftSelected] = useState('');
 
   const [rotation, setRotation] = useState<Flight[]>([]);
-  const [nextFlights, setNextFlights] = useState<Flight[]>([]);
+  const [nextFlights, setNextFlights] = useState<Flight[]>([]); 
 
   useEffect(() => {
     fetchAircrafts();
@@ -21,13 +21,13 @@ function App() {
   }, []);
 
   const fetchAircrafts = async () => {
-    const response = await fetch('https://recruiting-assessment.alphasights.com/api/aircrafts');
+    const response = await fetch("https://recruiting-assessment.alphasights.com/api/aircrafts");
     const data = await response.json();
     setAircrafts(data);
   };
 
   const fetchFlights = async () => {
-    const response = await fetch('https://recruiting-assessment.alphasights.com/api/flights');
+    const response = await fetch("https://recruiting-assessment.alphasights.com/api/flights");
     const data = await response.json();
     setFlights(data);
   };

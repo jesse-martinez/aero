@@ -1,5 +1,5 @@
 import SmallFlightCard from "./SmallFlightCard"
-import { Flight } from '../types'
+import { Flight } from "../types"
 
 type FlightsProps = {
   flights: Flight[],

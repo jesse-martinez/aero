@@ -33,7 +33,6 @@ h1, h2 {
 
 a {
   font-weight: 500;
-  color: var(--accent);
   text-decoration: inherit;
 }
 
