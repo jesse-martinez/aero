@@ -38,18 +38,12 @@ function App() {
   };
 
   const resetRotation = () => {
-    if(rotation.length > 0) {
-      setRotation([]);
-      setNextFlights(allFlights);
-    }
+    setRotation([]);
+    setNextFlights(allFlights);
   }
 
   const updateNextFlights = () => {
-
-    if (rotation.length === 0) {
-      return;
-    }
-    
+  
     const lastFlight = rotation[rotation.length - 1];
     const endTime = lastFlight.arrivaltime + 20 * 60;
     const midnightTime = 24 * 3600;
@@ -71,7 +65,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    updateNextFlights();
+    if(rotation.length > 0) {
+      updateNextFlights();
+    }
   }, [rotation])
 
   return (
