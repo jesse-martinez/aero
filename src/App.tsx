@@ -92,6 +92,7 @@ function App() {
           aircraftSelected={aircraftSelected}
           rotation={rotation}
           setRotation={setRotation}
+          resetRotation={resetRotation}
         />
       </div>
     </>
