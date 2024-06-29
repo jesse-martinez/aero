@@ -78,7 +78,7 @@ function App() {
   return (
     <>
       <Nav />
-      <div className="container flex justify-between mx-auto py-10 grow overflow-hidden">
+      <div className="container flex justify-between mx-auto py-8 grow overflow-hidden">
         {loading ? (
           <div className="h-full w-full flex justify-center items-center">
             <h2>Loading data...</h2>
