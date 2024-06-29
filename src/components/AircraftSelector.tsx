@@ -1,14 +1,16 @@
 import AircraftCard from "./AircraftCard"
 import { Aircraft } from "../types"
+import UtilizationBar from "./UtilizationBar";
 
 type AircraftSelectorProps = {
   aircrafts: Aircraft[],
   aircraftSelected: string,
   setAircraftSelected: (aircraft:string) => void,
-  resetRotation: () => void
+  resetRotation: () => void,
+  utilPercentage: number
 }
 
-export default function AircraftSelector({aircrafts, aircraftSelected, setAircraftSelected, resetRotation}:AircraftSelectorProps) {
+export default function AircraftSelector({aircrafts, aircraftSelected, setAircraftSelected, resetRotation, utilPercentage}:AircraftSelectorProps) {
 
   return(
     <div className="flex flex-col w-3/12 pr-1">
@@ -21,6 +23,7 @@ export default function AircraftSelector({aircrafts, aircraftSelected, setAircra
             aircraftSelected={aircraftSelected}
             setAircraftSelected={setAircraftSelected}
             resetRotation={resetRotation}
+            utilPercentage={utilPercentage}
           />
         ))}
       </div>

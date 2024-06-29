@@ -7,10 +7,11 @@ type AircraftCardProps = {
   aircraft: Aircraft,
   aircraftSelected: string,
   setAircraftSelected: (aircraft: string) => void,
-  resetRotation: () => void
+  resetRotation: () => void,
+  utilPercentage: number
 };
 
-export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSelected, resetRotation }: AircraftCardProps) {
+export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSelected, resetRotation, utilPercentage }: AircraftCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const isSelected = () => {
@@ -53,7 +54,7 @@ export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSe
           <p className="text-xs uppercase">Model {aircraft.type}</p>
           <p className="text-xs uppercase">Capacity {aircraft.economySeats}</p>
         </div>
-        <p className="text-lg">54%</p>
+        <p className="text-lg">{utilPercentage}%</p>
       </div>
     </button>
   );

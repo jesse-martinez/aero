@@ -12,6 +12,7 @@ function App() {
   const [aircraftSelected, setAircraftSelected] = useState('');
   const [rotation, setRotation] = useState<Flight[]>([]);
   const [nextFlights, setNextFlights] = useState<Flight[]>([]); 
+  const [utilPercentage, setUtilPercentage] = useState(0);
 
   const fetchAircrafts = async () => {
     try {
@@ -40,6 +41,7 @@ function App() {
   const resetRotation = () => {
     setRotation([]);
     setNextFlights(allFlights);
+    setUtilPercentage(0);
   }
 
   const updateNextFlights = () => {
@@ -79,6 +81,7 @@ function App() {
           aircraftSelected={aircraftSelected}
           setAircraftSelected={setAircraftSelected}
           resetRotation={resetRotation}
+          utilPercentage={utilPercentage}
         />
         <Rotation
           aircraftSelected={aircraftSelected}
