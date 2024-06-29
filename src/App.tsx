@@ -8,33 +8,41 @@ import { Aircraft, Flight } from "./types"
 
 function App() {
   const [aircrafts, setAircrafts] = useState<Aircraft[]>([]);
-  const [flights, setFlights] = useState<Flight[]>([]);
-
+  const [allFlights, setAllFlights] = useState<Flight[]>([]);
   const [aircraftSelected, setAircraftSelected] = useState('');
-
   const [rotation, setRotation] = useState<Flight[]>([]);
-  // const [nextFlights, setNextFlights] = useState<Flight[]>([]); 
+  const [nextFlights, setNextFlights] = useState<Flight[]>([]); 
+
+  const fetchAircrafts = async () => {
+    try {
+      const response = await fetch("https://recruiting-assessment.alphasights.com/api/aircrafts");
+      const data = await response.json();
+      setAircrafts(data);
+    } catch (error) {
+      console.error("Error fetching aircrafts:", error);
+    }
+  };
+
+  const fetchFlights = async () => {
+    try {
+      const response = await fetch("https://recruiting-assessment.alphasights.com/api/flights");
+      const data = await response.json();
+      setAllFlights(data);
+      setNextFlights(data);
+    } catch (error) {
+      console.error("Error fetching flights:", error);
+    }
+  };
+
+  const resetRotation = () => {
+    setRotation([]);
+    setNextFlights(allFlights);
+  }
 
   useEffect(() => {
     fetchAircrafts();
     fetchFlights();
   }, []);
-
-  const fetchAircrafts = async () => {
-    const response = await fetch("https://recruiting-assessment.alphasights.com/api/aircrafts");
-    const data = await response.json();
-    setAircrafts(data);
-  };
-
-  const fetchFlights = async () => {
-    const response = await fetch("https://recruiting-assessment.alphasights.com/api/flights");
-    const data = await response.json();
-    setFlights(data);
-  };
-
-  const resetRotation = () => {
-    setRotation([]);
-  }
 
   return (
     <>
@@ -51,7 +59,7 @@ function App() {
           rotation={rotation}
         />
         <FlightsList 
-          flights={flights}
+          nextFlights={nextFlights}
           aircraftSelected={aircraftSelected}
           rotation={rotation}
           setRotation={setRotation}
