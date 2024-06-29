@@ -27,6 +27,9 @@ function App() {
     try {
       const response = await fetch("https://recruiting-assessment.alphasights.com/api/flights");
       const data = await response.json();
+
+      data.sort((a:Flight, b:Flight) => a.departuretime - b.departuretime);
+
       setAllFlights(data);
       setNextFlights(data);
     } catch (error) {
@@ -35,14 +38,41 @@ function App() {
   };
 
   const resetRotation = () => {
-    setRotation([]);
-    setNextFlights(allFlights);
+    if(rotation.length > 0) {
+      setRotation([]);
+      setNextFlights(allFlights);
+    }
   }
+
+  const updateNextFlights = () => {
+
+    if (rotation.length === 0) {
+      return;
+    }
+    
+    const lastFlight = rotation[rotation.length - 1];
+    const endTime = lastFlight.arrivaltime + 20 * 60;
+    const midnightTime = 24 * 3600;
+
+    const compatibleFlights = allFlights.filter(flight => {
+      return (
+        flight.departuretime >= endTime &&
+        flight.origin === lastFlight.destination &&
+        flight.arrivaltime <= midnightTime
+      );
+    });
+  
+    setNextFlights(compatibleFlights);
+  };
 
   useEffect(() => {
     fetchAircrafts();
     fetchFlights();
   }, []);
+
+  useEffect(() => {
+    updateNextFlights();
+  }, [rotation])
 
   return (
     <>

@@ -10,6 +10,6 @@ export type Flight = {
   destination: string,
   readable_departure: string,
   readable_arrival: string,
-  departingtime: number,
+  departuretime: number,
   arrivaltime: number
 }

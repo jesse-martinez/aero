@@ -7,7 +7,7 @@ type SmallFlightCardProps = {
   flight: Flight,
   aircraftSelected: string,
   rotation: Flight[],
-  setRotation: (newRotation:Flight[]) => void
+  setRotation: (newRotation:Flight[]) => void,
 }
 
 export default function SmallFlightCard({flight, aircraftSelected, rotation, setRotation}: SmallFlightCardProps) {

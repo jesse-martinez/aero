@@ -5,7 +5,7 @@ type FlightsProps = {
   nextFlights: Flight[],
   aircraftSelected: string,
   rotation: Flight[],
-  setRotation: (newRotation:Flight[]) => void
+  setRotation: (newRotation:Flight[]) => void,
 }
 
 export default function Flights({nextFlights, aircraftSelected, rotation, setRotation}:FlightsProps) {
