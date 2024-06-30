@@ -5,10 +5,11 @@ import { Flight } from "../types"
 
 type RotationProps = {
   aircraftSelected: string,
-  rotation: Flight[]
+  rotation: Flight[],
+  removeLastFlightInRotation: () => void
 }
 
-export default function Rotation({aircraftSelected, rotation}:RotationProps) {
+export default function Rotation({aircraftSelected, rotation, removeLastFlightInRotation}:RotationProps) {
 
   const hasRotation = () => {
     return rotation.length > 0;
@@ -42,6 +43,8 @@ export default function Rotation({aircraftSelected, rotation}:RotationProps) {
                   key={i}
                   flight={flight}
                   flightLeg={i+1}
+                  isLastFlight={rotation.length - 1 === i}
+                  removeLastFlightInRotation={removeLastFlightInRotation}
                 />
               ))}
             </div>

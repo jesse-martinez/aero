@@ -48,7 +48,7 @@ function App() {
   }
 
   const updateNextFlights = () => {
-  
+
     const lastFlight = rotation[rotation.length - 1];
     const endTime = lastFlight.arrivaltime + 20 * 60;
     const midnightTime = 24 * 3600;
@@ -64,13 +64,20 @@ function App() {
     setNextFlights(compatibleFlights);
   };
 
+  const removeLastFlightInRotation = () => {
+    setRotation(prevRotation => prevRotation.slice(0, -1));
+  };
+
   useEffect(() => {
     fetchAircrafts();
     fetchFlights();
   }, []);
 
   useEffect(() => {
-    if(rotation.length > 0) {
+    if(rotation.length === 0) {
+      setNextFlights(allFlights);
+    }
+    else {
       updateNextFlights();
     }
   }, [rotation])
@@ -92,7 +99,11 @@ function App() {
               resetRotation={resetRotation}
               utilPercentage={utilPercentage}
             />
-            <Rotation aircraftSelected={aircraftSelected} rotation={rotation} />
+            <Rotation 
+              aircraftSelected={aircraftSelected} 
+              rotation={rotation} 
+              removeLastFlightInRotation={removeLastFlightInRotation}
+            />
             <FlightsList
               nextFlights={nextFlights}
               aircraftSelected={aircraftSelected}
