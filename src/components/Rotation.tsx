@@ -10,10 +10,7 @@ type RotationProps = {
 }
 
 export default function Rotation({aircraftSelected, rotation, removeLastFlightInRotation}:RotationProps) {
-
-  const hasRotation = () => {
-    return rotation.length > 0;
-  }
+  const hasRotation = rotation.length > 0;
 
   return(
     <div className="flex flex-col w-6/12 px-1 relative justify-between">
@@ -33,10 +30,10 @@ export default function Rotation({aircraftSelected, rotation, removeLastFlightIn
           {!aircraftSelected && (
             <div className="flex items-center justify-center h-full"><h2>Select an aircraft</h2></div>
           )}
-          {aircraftSelected && !hasRotation() && (
+          {aircraftSelected && !hasRotation && (
             <div className="flex items-center justify-center h-full"><h2>Select an initial flight</h2></div>
           )}
-          {hasRotation() && (
+          {hasRotation && (
             <div className="rotation">
               {rotation.map((flight, i) => (
                 <BigFlightCard

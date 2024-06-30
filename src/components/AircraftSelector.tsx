@@ -1,6 +1,5 @@
 import AircraftCard from "./AircraftCard"
 import { Aircraft } from "../types"
-import UtilizationBar from "./UtilizationBar";
 
 type AircraftSelectorProps = {
   aircrafts: Aircraft[],

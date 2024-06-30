@@ -5,7 +5,6 @@ import Rotation from "./components/Rotation"
 import FlightsList from "./components/FlightsList"
 import { Aircraft, Flight } from "./types"
 
-
 function App() {
   const [aircrafts, setAircrafts] = useState<Aircraft[]>([]);
   const [allFlights, setAllFlights] = useState<Flight[]>([]);
@@ -15,32 +14,6 @@ function App() {
   const [utilPercentage, setUtilPercentage] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const fetchAircrafts = async () => {
-    try {
-      const response = await fetch("https://recruiting-assessment.alphasights.com/api/aircrafts");
-      const data = await response.json();
-      setAircrafts(data);
-    } catch (error) {
-      console.error("Error fetching aircrafts:", error);
-    }
-  };
-
-  const fetchFlights = async () => {
-    try {
-      const response = await fetch("https://recruiting-assessment.alphasights.com/api/flights");
-      const data = await response.json();
-
-      data.sort((a:Flight, b:Flight) => a.departuretime - b.departuretime);
-
-      setAllFlights(data);
-      setNextFlights(data);
-    } catch (error) {
-      console.error("Error fetching flights:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const resetRotation = () => {
     setRotation([]);
     setNextFlights(allFlights);
@@ -48,7 +21,6 @@ function App() {
   }
 
   const updateNextFlights = () => {
-
     const lastFlight = rotation[rotation.length - 1];
     const endTime = lastFlight.arrivaltime + 20 * 60;
     const midnightTime = 24 * 3600;
@@ -64,13 +36,51 @@ function App() {
     setNextFlights(compatibleFlights);
   };
 
+  const calcPercentage = () => {
+    const dayInSeconds = 24 * 60 * 60;
+
+    const totalFlightTime = rotation.reduce((total, flight) => {
+      return total + (flight.arrivaltime - flight.departuretime);
+    }, 0);
+
+    const utilization = Math.round((totalFlightTime / dayInSeconds) * 100);
+    setUtilPercentage(utilization);
+  };
+
   const removeLastFlightInRotation = () => {
     setRotation(prevRotation => prevRotation.slice(0, -1));
   };
 
   useEffect(() => {
-    fetchAircrafts();
-    fetchFlights();
+    const fetchAircrafts = async () => {
+      const response = await fetch("https://recruiting-assessment.alphasights.com/api/aircrafts");
+      const data = await response.json();
+      setAircrafts(data);
+      return data;
+    };
+  
+    const fetchFlights = async () => {
+      const response = await fetch("https://recruiting-assessment.alphasights.com/api/flights");
+      const data = await response.json();
+      data.sort((a:Flight, b:Flight) => a.departuretime - b.departuretime);
+      return data;
+    };
+    
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const [aircraftData, flightData] = await Promise.all([fetchAircrafts(), fetchFlights()]);
+        setAircrafts(aircraftData);
+        setAllFlights(flightData);
+        setNextFlights(flightData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -80,6 +90,7 @@ function App() {
     else {
       updateNextFlights();
     }
+    calcPercentage();
   }, [rotation])
 
   return (

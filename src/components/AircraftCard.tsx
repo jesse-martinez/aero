@@ -13,15 +13,12 @@ type AircraftCardProps = {
 
 export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSelected, resetRotation, utilPercentage }: AircraftCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-
-  const isSelected = () => {
-    return aircraftSelected === aircraft.ident;
-  };
+  const isSelected =  aircraftSelected === aircraft.ident;
 
   const handleClick = () => {
     resetRotation();
 
-    if (isSelected()) {
+    if (isSelected) {
       setAircraftSelected('');
     } else {
       setAircraftSelected(aircraft.ident);
@@ -32,7 +29,7 @@ export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSe
     <button 
       className={clsx(
         "aircraft-card border border-white/20 px-4 py-3 bg-white/5 opacity-50 hover:opacity-100 rounded mb-3 last:mb-0 w-full transition-all",
-        { "!opacity-100 !bg-white/10": isSelected() }
+        { "!opacity-100 !bg-white/10": isSelected }
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -46,7 +43,7 @@ export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSe
           transition={{ duration: 0.25, ease: [0.075, 0.82, 0.165, 1] }}
           className="toggle-text text-xxs uppercase origin-center"
         >
-          {isSelected() ? "Delete rotation -" : "Select aircraft +"}
+          {isSelected ? "Delete rotation -" : "Select aircraft +"}
         </motion.p>
       </div>
       <div className="flex justify-between">
@@ -54,7 +51,7 @@ export default function AircraftCard({ aircraft, aircraftSelected, setAircraftSe
           <p className="text-xs uppercase">Model {aircraft.type}</p>
           <p className="text-xs uppercase">Capacity {aircraft.economySeats}</p>
         </div>
-        <p className="text-lg">{utilPercentage}%</p>
+        {isSelected ? (<p className="text-lg">{utilPercentage}%</p>) : (<p className="text-lg">0%</p>)}
       </div>
     </button>
   );

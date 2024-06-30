@@ -27,7 +27,7 @@ export default function BigFlightCard({flight, flightLeg, isLastFlight, removeLa
       {isLastFlight && (
         <button
           onClick={removeLastFlightInRotation}
-          className="absolute opacity-50 hover:opacity-100 w-5 top-3 right-3"
+          className="absolute opacity-50 hover:opacity-100 w-5 top-3 right-3 transition-all"
         >
           <MinusCircleIcon/>
         </button>
