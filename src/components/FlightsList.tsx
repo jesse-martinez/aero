@@ -3,21 +3,18 @@ import { Flight } from "../types"
 
 type FlightsProps = {
   nextFlights: Flight[],
-  aircraftSelected: string,
-  rotation: Flight[],
-  setRotation: (newRotation:Flight[]) => void,
+  hasAircraftSelected: boolean,
+  hasRotation: boolean,
+  setRotation: React.Dispatch<React.SetStateAction<Flight[]>>,
   resetRotation: () => void,
 }
 
-export default function Flights({nextFlights, aircraftSelected, rotation, setRotation, resetRotation}:FlightsProps) {
-  const hasRotation = () => {
-    return rotation.length;
-  }
+export default function Flights({nextFlights, hasAircraftSelected, hasRotation, setRotation, resetRotation}:FlightsProps) {
 
   return(
     <div className="flex flex-col w-3/12 pl-1">
       <h2 className="text-center mb-4 text-lg">
-        {hasRotation() ? "Choose Next Flight" : "All Flights"}
+        {hasRotation ? "Choose Next Flight" : "All Flights"}
       </h2>
       <div className="border border-white/20 rounded h-90 grow p-3 overflow-auto">
         {nextFlights.length > 0 ? (
@@ -25,8 +22,7 @@ export default function Flights({nextFlights, aircraftSelected, rotation, setRot
             <SmallFlightCard
               key={i}
               flight={flight}
-              aircraftSelected={aircraftSelected}
-              rotation={rotation}
+              hasAircraftSelected={hasAircraftSelected}
               setRotation={setRotation}
             />
           ))

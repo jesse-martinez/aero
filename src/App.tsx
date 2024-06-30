@@ -106,8 +106,8 @@ function App() {
             />
             <FlightsList
               nextFlights={nextFlights}
-              aircraftSelected={aircraftSelected}
-              rotation={rotation}
+              hasAircraftSelected={aircraftSelected.length > 0}
+              hasRotation={rotation.length > 0}
               setRotation={setRotation}
               resetRotation={resetRotation}
             />
