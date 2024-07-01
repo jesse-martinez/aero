@@ -12,6 +12,8 @@ Users select an aircraft and an initial flight. The sidebar will then update wit
 - 20-minute minimum turnaround time.
 - Aircraft cannot "teleport" and must operate a flight for any movement; empty aircraft are too costly!
 
+The user can only select the next flight and remove the last flight.
+
 For the timeline, scheduled service is shown in green, turnaround time in purple, and idle time in grey.
 
 ## How to run
